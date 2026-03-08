@@ -1,0 +1,70 @@
+######################
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+sh.exe.stackdump
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+#################
+# Project files #
+#################
+
+# Temporary files
+**/temp/
+**/*.old.*
+**/*.temp.*
+*.log
+
+# NodeJS
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# Compiled output
+dist
+!dist
+tmp
+/out-tsc
+**/*.tsbuildinfo
+**/*.*.tsbuildinfo
+
+# IDEs and editors
+.idea
+.fleet
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Misc
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+vite.config.*.timestamp*
+vitest.config.*.timestamp*
+test-results
+
+# Download temp files
+**/*.part

@@ -1,0 +1,73 @@
+{
+  "name": "nexus-library-wiki-offline",
+  "version": "1.0.0",
+  "description": "CLI tool for downloading all necessary files for offline Wikipedia usage",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "bin": {
+    "wio": "./dist/cli/cli.js"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "git clean -dfx && npm ci && npm run test && npm run build",
+    "prepublishOnly": "npm run lint:fix && npm run test && npm run build",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "build": "rimraf dist && tsc --build --clean && tsc -p tsconfig.lib.json && node -e \"require('fs').chmodSync('dist/cli/cli.js',0o755)\"",
+    "build:watch": "tsc --build --clean && tsc -p tsconfig.lib.json --watch",
+    "update-npm": "ncu -t minor --deep -u --rejectVersion \"/^\\d+\\.\\d+\\.\\d+$/\" --cooldown 14"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.10.1",
+    "@types/cli-progress": "^3.11.6",
+    "@types/yargs": "^17.0.35",
+    "cli-progress": "^3.12.0",
+    "picocolors": "^1.1.1",
+    "tslib": "^2.8.1",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/node": "^22",
+    "app-root-path": "^3.1.0",
+    "eslint-plugin-jsdoc": "^62.7.1",
+    "jiti": "^2.6.1",
+    "npm-check-updates": "^19.6.3",
+    "rimraf": "^6.1.3",
+    "typescript-eslint": "^8.56.0",
+    "typescript": "^5.9.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vite": "^6.4.1",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">= 24.14.0"
+  },
+  "homepage": "https://github.com/vsjov/nexus-library-wiki-offline#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vsjov/nexus-library-wiki-offline.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vsjov/nexus-library-wiki-offline/issues"
+  },
+  "keywords": [
+    "wikipedia",
+    "offline",
+    "kiwix",
+    "zim",
+    "wikimedia",
+    "cli",
+    "downloader"
+  ],
+  "license": "Apache-2.0",
+  "author": "Vladimir Jovanović <vladimir@bitersen.com>"
+}
