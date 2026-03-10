@@ -1,0 +1,76 @@
+name: "Lint, test and build"
+
+on:
+  push:
+    branches: [ "master", "release-v**" ]
+    tags: ["v[0-9]+*"]
+  pull_request:
+    branches: [ "**" ]
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
+jobs:
+  ############################
+  #                          #
+  #   Lint, test and build   #
+  #                          #
+  ############################
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      # --------
+      - name: Clone the nexus-library-wiki-offline repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # hash for v6.0.2
+        with:
+          path: nexus-library-wiki-offline
+
+      # Install dependencies
+      # --------------------
+      - name: Install nexus-library-wiki-offline
+        uses: ./nexus-library-wiki-offline/.github/actions/install-package
+        with:
+          package-name: nexus-library-wiki-offline
+          node-version: 24.14.0
+
+      # Lint, test, build
+      # -----------------
+      - name: Run ESLint
+        shell: bash
+        run: |
+          cd nexus-library-wiki-offline
+          npm run lint
+
+      - name: Run tests
+        shell: bash
+        run: |
+          cd nexus-library-wiki-offline
+          npm test
+
+      - name: Build
+        shell: bash
+        run: |
+          cd nexus-library-wiki-offline
+          npm run build
+
+      # Check that dist/ is up to date
+      # --------------------------------
+      - name: Check if build output differs from committed dist/
+        id: changes-dist
+        shell: bash
+        run: |
+          cd nexus-library-wiki-offline
+          if [[ `git status --porcelain` ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Fail if build output differs from committed dist/
+        if: steps.changes-dist.outputs.changes == 'true'
+        shell: bash
+        run: |
+          echo "::error::Build output differs from committed dist/. Run 'npm run build' locally and commit the changes."
+          exit 1
