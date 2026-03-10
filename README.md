@@ -1,4 +1,7 @@
-# Nexus Library: Wikipedia Offline Downloader
+[![CI](https://github.com/vsjov/nexus-library-wiki-offline/actions/workflows/main.yml/badge.svg)](https://github.com/vsjov/nexus-library-wiki-offline/actions/workflows/main.yml)
+![Node.js](https://img.shields.io/node/v/nexus-library-wiki-offline)
+
+# Nexus Library: Wikipedia Offline Downloader [![GitHub release](https://img.shields.io/github/v/release/vsjov/nexus-library-wiki-offline)](https://github.com/vsjov/nexus-library-wiki-offline/releases/latest)
 
 A CLI tool for downloading all necessary files to use Wikipedia offline. Goal of
 this project is to provide a single, user-friendly interface for obtaining
