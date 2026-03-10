@@ -1,6 +1,6 @@
 {
   "name": "nexus-library-wiki-offline",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "CLI tool for downloading all necessary files for offline Wikipedia usage",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
