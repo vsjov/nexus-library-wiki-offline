@@ -1,3 +1,4 @@
+import pkg from '../../package.json' with { type: 'json' };
 // Download source base URLs
 export const ZIM_BASE_URL = 'https://download.kiwix.org/zim/wikipedia/';
 export const KIWIX_TOOLS_BASE_URL = 'https://download.kiwix.org/release/kiwix-tools/';
@@ -5,7 +6,7 @@ export const DUMPS_BASE_URL = 'https://dumps.wikimedia.org/';
 // Default output directory
 export const DEFAULT_OUTPUT_DIR = '~/Downloads/wiki-offline';
 // HTTP settings
-export const USER_AGENT = 'wiki-offline/1.0.0 (https://github.com/user/wiki-offline)';
+export const USER_AGENT = `${pkg.name}/${pkg.version} (${pkg.homepage})`;
 export const MAX_REDIRECTS = 5;
 export const MAX_RETRIES = 3;
 export const RETRY_DELAY_MS = 1000;
